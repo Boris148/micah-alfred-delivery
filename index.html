@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Alfred Delivery Document</title>
+  <style>
+    :root {
+      --bg: #0b0b0c;
+      --panel: #121215;
+      --panel-2: #17171b;
+      --text: #f5f2ea;
+      --muted: #b8b2a7;
+      --line: rgba(255, 191, 73, 0.22);
+      --gold: #ffbf49;
+      --gold-2: #d89b2b;
+      --success: #f4c96a;
+      --shadow: 0 20px 45px rgba(0, 0, 0, 0.35);
+    }
+
+    * { box-sizing: border-box; }
+    @page { size: A4; margin: 0.45in; }
+
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.45;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    .page {
+      width: 8.27in;
+      min-height: 11.69in;
+      margin: 0 auto;
+      padding: 0.34in;
+      background:
+        radial-gradient(circle at top right, rgba(255, 191, 73, 0.11), transparent 26%),
+        linear-gradient(180deg, #111114 0%, #0b0b0c 100%);
+    }
+
+    .brand {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 18px;
+      padding-bottom: 18px;
+      border-bottom: 1px solid var(--line);
+      margin-bottom: 22px;
+    }
+
+    .eyebrow {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+      color: var(--gold);
+      margin-bottom: 8px;
+      font-weight: 700;
+    }
+
+    h1, h2, h3, p { margin: 0; }
+
+    h1 {
+      font-size: 32px;
+      line-height: 1.02;
+      letter-spacing: -0.03em;
+      max-width: 470px;
+    }
+
+    .subhead {
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 14px;
+      max-width: 470px;
+    }
+
+    .status-card {
+      background: linear-gradient(180deg, rgba(255,191,73,0.14), rgba(255,191,73,0.05));
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 16px 18px;
+      min-width: 188px;
+      box-shadow: var(--shadow);
+    }
+
+    .status-card .label {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+
+    .status-card .price {
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--gold);
+    }
+
+    .status-card .paid {
+      margin-top: 6px;
+      font-size: 13px;
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1.25fr 0.9fr;
+      gap: 18px;
+      margin-bottom: 18px;
+    }
+
+    .card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 18px;
+      padding: 18px;
+      box-shadow: var(--shadow);
+    }
+
+    .hero-note {
+      font-size: 17px;
+      color: #f8f4eb;
+      margin-bottom: 14px;
+    }
+
+    .meta {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px 16px;
+      margin-top: 14px;
+      font-size: 13px;
+    }
+
+    .meta strong, .section-title strong { color: var(--gold); }
+
+    .section-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 14px;
+      margin-bottom: 12px;
+    }
+
+    h2 {
+      font-size: 19px;
+      letter-spacing: -0.02em;
+    }
+
+    .section-kicker {
+      font-size: 11px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+    }
+
+    .value-stack, .simple-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .value-item, .simple-item {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      padding: 11px 12px;
+      border-radius: 14px;
+      background: var(--panel-2);
+      border: 1px solid rgba(255, 191, 73, 0.12);
+    }
+
+    .check {
+      width: 22px;
+      height: 22px;
+      flex: 0 0 22px;
+      border-radius: 999px;
+      display: grid;
+      place-items: center;
+      background: rgba(255, 191, 73, 0.14);
+      color: var(--gold);
+      font-size: 13px;
+      font-weight: 900;
+      margin-top: 1px;
+    }
+
+    .value-item strong, .simple-item strong {
+      display: block;
+      color: var(--text);
+      font-size: 13px;
+      margin-bottom: 2px;
+    }
+
+    .value-item span, .simple-item span,
+    .muted, .small {
+      color: var(--muted);
+      font-size: 12.5px;
+    }
+
+    .capability-box {
+      padding: 14px;
+      border-radius: 16px;
+      background: linear-gradient(180deg, rgba(255,191,73,0.08), rgba(255,191,73,0.03));
+      border: 1px solid var(--line);
+    }
+
+    .cap-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px 12px;
+      margin-top: 12px;
+    }
+
+    .cap-pill {
+      padding: 9px 10px;
+      border-radius: 12px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.06);
+      font-size: 12px;
+      color: var(--text);
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      margin-top: 18px;
+    }
+
+    .support-card {
+      background: linear-gradient(180deg, rgba(255,191,73,0.10), rgba(255,191,73,0.03));
+      border: 1px solid var(--line);
+    }
+
+    .next-option {
+      padding: 13px 14px;
+      border-radius: 14px;
+      background: var(--panel-2);
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .next-option + .next-option { margin-top: 10px; }
+
+    .footer {
+      margin-top: 18px;
+      padding-top: 14px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      font-size: 11.5px;
+      color: var(--muted);
+    }
+
+    .gold { color: var(--gold); }
+
+    @media print {
+      body { background: #0b0b0c; }
+      .page { margin: 0; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="brand">
+      <div>
+        <div class="eyebrow">Social Elite Marketing Group</div>
+        <h1>Alfred Delivery & Support Overview</h1>
+        <p class="subhead">Built for Micah White — your AI operator is installed, configured, tested, and ready to work.</p>
+      </div>
+      <div class="status-card">
+        <div class="label">Base Build</div>
+        <div class="price">$1,000</div>
+        <div class="paid">PAID • Delivered May 2, 2026</div>
+      </div>
+    </section>
+
+    <section class="grid">
+      <div class="card">
+        <p class="hero-note">Micah, Alfred is now set up as your personal AI agent environment with the core infrastructure in place for autonomous work, memory, monitoring, and future expansion.</p>
+        <div class="meta">
+          <div><strong>Client:</strong> Micah White</div>
+          <div><strong>Agent:</strong> Alfred</div>
+          <div><strong>Built By:</strong> Jeremy Garcia</div>
+          <div><strong>Company:</strong> Social Elite Marketing Group</div>
+        </div>
+      </div>
+
+      <div class="card capability-box">
+        <div class="section-kicker">What Alfred can do</div>
+        <h2 style="margin-top:4px;">Core Capabilities</h2>
+        <div class="cap-grid">
+          <div class="cap-pill">Create and run cron-based autonomous jobs</div>
+          <div class="cap-pill">Use long-term memory and working context</div>
+          <div class="cap-pill">Handle lightweight local-model tasks</div>
+          <div class="cap-pill">Use premium cloud models when needed</div>
+          <div class="cap-pill">Read, organize, and process information</div>
+          <div class="cap-pill">Support future automations and custom workflows</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="section-title">
+        <h2>What You Got</h2>
+        <div class="section-kicker">Value stacked into the base build</div>
+      </div>
+      <div class="value-stack">
+        <div class="value-item"><div class="check">✓</div><div><strong>Full OpenClaw installation on your Mac Mini</strong><span>Complete setup and configuration of the agent environment from the ground up.</span></div></div>
+        <div class="value-item"><div class="check">✓</div><div><strong>Alfred powered by Claude Opus 4.6</strong><span>Premium reasoning brain connected through Anthropic OAuth for high-quality responses and execution.</span></div></div>
+        <div class="value-item"><div class="check">✓</div><div><strong>$50 of included overage credit</strong><span>Free usage buffer from Claude/Anthropic already included in the delivery.</span></div></div>
+        <div class="value-item"><div class="check">✓</div><div><strong>OpenAI integration for autonomous cron jobs</strong><span>ChatGPT 5.5 via Codex OAuth connected specifically for background jobs and autonomous task execution.</span></div></div>
+        <div class="value-item"><div class="check">✓</div><div><strong>Ollama local models for lightweight tasks</strong><span>Qwen3.5cloud on free tier installed for lower-cost or simpler workloads.</span></div></div>
+        <div class="value-item"><div class="check">✓</div><div><strong>Full skill library loaded</strong><span>Dozens of pre-built capabilities available so Alfred has broad range from day one.</span></div></div>
+        <div class="value-item"><div class="check">✓</div><div><strong>Memory system installed</strong><span>Long-term recall, working context, and daily logging so Alfred can retain useful context over time.</span></div></div>
+        <div class="value-item"><div class="check">✓</div><div><strong>Health and maintenance monitoring</strong><span>Autonomous checks in place to help keep the system stable and catch issues early.</span></div></div>
+        <div class="value-item"><div class="check">✓</div><div><strong>Autonomous jobs on command</strong><span>You can instruct Alfred to create recurring jobs like market research, email reading, client acquisition tasks, and more.</span></div></div>
+        <div class="value-item"><div class="check">✓</div><div><strong>Initial testing and verification completed</strong><span>The environment was configured, checked, and confirmed working at delivery.</span></div></div>
+      </div>
+    </section>
+
+    <section class="two-col">
+      <div class="card">
+        <div class="section-title">
+          <h2>What’s Not Included</h2>
+          <div class="section-kicker">Outside the base build scope</div>
+        </div>
+        <div class="simple-list">
+          <div class="simple-item"><div class="check">—</div><div><strong>Specific automations or workflows</strong><span>Those can be built once your exact use cases are defined.</span></div></div>
+          <div class="simple-item"><div class="check">—</div><div><strong>Business-specific task training</strong><span>Alfred is ready, but custom processes still need to be taught and structured.</span></div></div>
+          <div class="simple-item"><div class="check">—</div><div><strong>Custom agent or skill development</strong><span>Specialized builds are available separately as future project work.</span></div></div>
+          <div class="simple-item"><div class="check">—</div><div><strong>External platform integrations</strong><span>CRM, ad platform, and other third-party connections are separate implementation work.</span></div></div>
+          <div class="simple-item"><div class="check">—</div><div><strong>Ongoing development work</strong><span>Continuous expansion is available, but not included in the initial delivery fee.</span></div></div>
+        </div>
+      </div>
+
+      <div class="card support-card">
+        <div class="section-title">
+          <h2>Included Support</h2>
+          <div class="section-kicker">Free for 2 weeks</div>
+        </div>
+        <div class="simple-list">
+          <div class="simple-item"><div class="check">✓</div><div><strong>If Alfred breaks or stops working</strong><span>Covered during the included support window.</span></div></div>
+          <div class="simple-item"><div class="check">✓</div><div><strong>Bug fixes and troubleshooting</strong><span>Covered through May 16, 2026.</span></div></div>
+          <div class="simple-item"><div class="check">!</div><div><strong>What this support does not cover</strong><span>New features, new agents, new automations, or added development work.</span></div></div>
+        </div>
+        <p class="small" style="margin-top:12px;">The goal is simple: if something that was delivered stops functioning correctly, it gets taken care of. If you want to expand Alfred into new workflows, that becomes a separate scoped project.</p>
+      </div>
+    </section>
+
+    <section class="card" style="margin-top:18px;">
+      <div class="section-title">
+        <h2>What’s Next</h2>
+        <div class="section-kicker">Natural next steps when you’re ready</div>
+      </div>
+      <div class="next-option">
+        <strong class="gold">Option A — Monthly Retainer</strong>
+        <p class="muted">Ongoing support, maintenance, improvements, and priority access. <span class="gold">Custom quoted.</span></p>
+      </div>
+      <div class="next-option">
+        <strong class="gold">Option B — Per-Job Basis</strong>
+        <p class="muted">Ideal for one-off builds like a custom automation, a new agent, or a specific platform integration. <span class="gold">Let’s discuss.</span></p>
+      </div>
+      <p class="small" style="margin-top:12px;">Alfred already has the foundation. The next layer is simply deciding which business tasks you want him to own first.</p>
+    </section>
+
+    <footer class="footer">
+      <div>Social Elite Marketing Group • Alfred delivery document for Micah White</div>
+      <div>Contact: <span class="gold">jeremy@semgllc.com</span></div>
+    </footer>
+  </main>
+</body>
+</html>
